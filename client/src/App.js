@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 function App() {
   const [pin, setPin] = useState(new Array(3).fill(''));
+  const [verify, setVerify] = useState(0);
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -12,6 +13,13 @@ function App() {
 
     if (element.nextSibling) {
       element.nextSibling.focus();
+    }
+  };
+  const handleVerify = () => {
+    if (pin.join('') == 576 || pin.join('') == 1964 || pin.join('') == 15764) {
+      alert('YOUR OTP' + ' ' + pin.join('') + ' ' + 'is verified');
+    } else {
+      alert('YOUR OTP' + ' ' + pin.join('') + ' ' + 'is not correct');
     }
   };
 
@@ -37,7 +45,7 @@ function App() {
       </div>
       <div className='footer'>
         <button onClick={(e) => setPin([...pin.map((v) => '')])}>Clear</button>
-        <button>Verify</button>
+        <button onClick={handleVerify}>Verify</button>
       </div>
     </div>
   );
